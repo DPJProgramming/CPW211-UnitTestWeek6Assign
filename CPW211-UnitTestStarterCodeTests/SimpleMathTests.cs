@@ -18,27 +18,47 @@ namespace CPW211_UnitTestStarterCode.Tests
         [DataRow(0, -0)]
         public void Add_TwoNumbers_ReturnsSum(double num1, double num2)
         {
-            // Use the DataRow values to test the Add method
-            Assert.Fail();
+            double expectedSum = num1 + num2;
+            Assert.AreEqual(expectedSum, SimpleMath.Add(num1, num2));
         }
 
         [TestMethod]
-        public void Multiply_TwoNumbers_ReturnsProduct()
+        [DataRow(5, 10)]
+        [DataRow(0, 100)]
+        [DataRow(0, 0)]
+        [DataRow(23.5, 34.678)]
+        public void Multiply_TwoNumbers_ReturnsProduct(double num1, double num2)
         {
-            // Use a few pairs of values to test the Multiply method
-            Assert.Fail();
+            double expectedProduct = num1 * num2;
+            Assert.AreEqual(expectedProduct, SimpleMath.Multiply(num1, num2));
         }
 
         [TestMethod]
-        public void Divide_DenominatorZero_ThrowsArgumentException()
+        [DataRow(5, 0)]
+        [DataRow(0, 0)]
+        [DataRow(98.292, 0)]
+        public void Divide_DenominatorZero_ThrowsArgumentException(double numerator, double denominator)
         {
-            // Divide by zero should throw an argument exception with a message
-            // "Denominator cannot be zero"
-            Assert.Fail();
+            Assert.ThrowsException<DivideByZeroException>(() => SimpleMath.Divide(numerator, denominator));
         }
 
-        // TODO: Test Divide method with two valid numbers
+        [TestMethod]
+        [DataRow(20, 3.2)]
+        [DataRow(1, 100)]
+        [DataRow(-15.3, 45.1)]
+        public void Divide_TwoNumbers_ReturnsQuotient(double num1, double num2) {
+            double expectedQuotient = num1 / num2;
+            Assert.AreEqual(expectedQuotient, SimpleMath.Divide(num1, num2));
+        }
 
         // TODO: Test subtract method with two valid numbers
+        [TestMethod]
+        [DataRow(5, 10)]
+        [DataRow(0, 100)]
+        [DataRow(0, 0)]
+        public void Subtract_SubtractTwoNumber_ReturnsDifference(double num1, double num2) {
+            double expectedDifference = num1 - num2;
+            Assert.AreEqual(expectedDifference, SimpleMath.Subtract(num1, num2));
+        }
     }
 }

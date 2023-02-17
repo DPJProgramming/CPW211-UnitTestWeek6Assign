@@ -30,7 +30,12 @@ namespace CPW211_UnitTestStarterCode
 
         public static double Divide(double a, double b)
         {
-            return a / b;
+            if (b == 0) {
+                throw new DivideByZeroException("Denominator cannot be zero");
+            }
+            else {
+                return a / b;
+            }
         }
     }
 }
